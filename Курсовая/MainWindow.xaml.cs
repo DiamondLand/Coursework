@@ -2,6 +2,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.Windows;
+using Курсовая;
 
 namespace Coursework
 {
@@ -12,6 +13,14 @@ namespace Coursework
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        // Обработчик нажатия кнопки для открытия Window1
+        private void OpenWindow1_Click(object sender, RoutedEventArgs e)
+        {
+            var window1 = new Window1(this);
+            window1.Show(); // Показать Window1
+            Hide(); // Скрыть основное окно
         }
 
         private void ConnectButton_Click(object sender, RoutedEventArgs e)
@@ -77,7 +86,6 @@ public class ProductCategory
     public int CategoryId { get; set; }
     public Category Category { get; set; }
 
-    // Определение составного первичного ключа
     [Key]
     public int ProductCategoryId { get; set; }
 }
