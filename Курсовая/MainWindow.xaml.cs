@@ -15,10 +15,9 @@ namespace Coursework
             InitializeComponent();
         }
 
-        // Обработчик нажатия кнопки для открытия Window1
         private void OpenWindow1_Click(object sender, RoutedEventArgs e)
         {
-            var window1 = new Window1(this);
+            var window1 = new Window1(context); // Передача контекста базы данных
             window1.Show(); // Показать Window1
             Hide(); // Скрыть основное окно
         }
