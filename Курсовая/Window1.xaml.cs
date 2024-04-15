@@ -25,7 +25,6 @@ namespace Курсовая
             var productCategories = dbContext.ProductCategories.ToList();
             var orders = dbContext.Orders.ToList();
             var orderItems = dbContext.OrderItems.ToList();
-            var reports = dbContext.Reports.ToList();
 
             // Создаем новый список для отображения в DataGrid
             var tableData = new List<object>();
@@ -35,7 +34,6 @@ namespace Курсовая
             tableData.AddRange(productCategories);
             tableData.AddRange(orders);
             tableData.AddRange(orderItems);
-            tableData.AddRange(reports);
 
             // Привязываем список к ItemsSource DataGrid
             dataGrid.ItemsSource = tableData;

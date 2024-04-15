@@ -141,14 +141,14 @@ public class OrderItem
     public int Quantity { get; set; }
 }
 
-public class Report
+public class Supplier
 {
-    public int ReportId { get; set; }
+    public int SupplierId { get; set; }
     public string Name { get; set; }
-    public string Description { get; set; }
-    public string ReportType { get; set; }
+    public string ContactPerson { get; set; }
+    public string Email { get; set; }
+    public string Phone { get; set; }
 }
-
 
 public class StoreContext : DbContext
 {
@@ -158,7 +158,7 @@ public class StoreContext : DbContext
     public DbSet<ProductCategory> ProductCategories { get; set; }
     public DbSet<Order> Orders { get; set; }
     public DbSet<OrderItem> OrderItems { get; set; }
-    public DbSet<Report> Reports { get; set; }
+    public DbSet<Supplier> Suppliers { get; set; }
     public DbSet<ShoppingAddress> ShoppingAddresses { get; set; }
     public DbSet<PaymentMethod> PaymentMethods { get; set; }
     public DbSet<OrderPayment> OrderPayments { get; set; }
@@ -182,7 +182,7 @@ public class StoreContext : DbContext
         modelBuilder.Entity<ProductCategory>().ToTable("ProductCategories");
         modelBuilder.Entity<Order>().ToTable("Orders");
         modelBuilder.Entity<OrderItem>().ToTable("OrderItems");
-        modelBuilder.Entity<Report>().ToTable("Reports");
+        modelBuilder.Entity<Supplier>().ToTable("Suppliers");
         modelBuilder.Entity<ShoppingAddress>().ToTable("ShoppingAddresses");
         modelBuilder.Entity<PaymentMethod>().ToTable("PaymentMethods");
         modelBuilder.Entity<OrderPayment>().ToTable("OrderPayments");
