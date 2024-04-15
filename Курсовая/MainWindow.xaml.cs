@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Reflection;
 using System.Windows;
@@ -71,6 +72,7 @@ public class Product
     public string Description { get; set; }
     public decimal Price { get; set; }
     public int QuantityInStock { get; set; }
+    public ICollection<ProductSupplier> ProductSuppliers { get; set; }
 }
 
 public class Category
@@ -148,6 +150,16 @@ public class Supplier
     public string ContactPerson { get; set; }
     public string Email { get; set; }
     public string Phone { get; set; }
+    public ICollection<ProductSupplier> ProductSuppliers { get; set; }
+}
+
+public class ProductSupplier
+{
+    public int ProductId { get; set; }
+    public Product Product { get; set; }
+
+    public int SupplierId { get; set; }
+    public Supplier Supplier { get; set; }
 }
 
 public class StoreContext : DbContext
@@ -162,6 +174,7 @@ public class StoreContext : DbContext
     public DbSet<ShoppingAddress> ShoppingAddresses { get; set; }
     public DbSet<PaymentMethod> PaymentMethods { get; set; }
     public DbSet<OrderPayment> OrderPayments { get; set; }
+    public DbSet<ProductSupplier> ProductSuppliers { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -186,6 +199,18 @@ public class StoreContext : DbContext
         modelBuilder.Entity<ShoppingAddress>().ToTable("ShoppingAddresses");
         modelBuilder.Entity<PaymentMethod>().ToTable("PaymentMethods");
         modelBuilder.Entity<OrderPayment>().ToTable("OrderPayments");
-    }
 
+        modelBuilder.Entity<ProductSupplier>()
+            .HasKey(ps => new { ps.ProductId, ps.SupplierId });
+
+        modelBuilder.Entity<ProductSupplier>()
+            .HasOne(ps => ps.Product)
+            .WithMany(p => p.ProductSuppliers)
+            .HasForeignKey(ps => ps.ProductId);
+
+        modelBuilder.Entity<ProductSupplier>()
+            .HasOne(ps => ps.Supplier)
+            .WithMany(s => s.ProductSuppliers)
+            .HasForeignKey(ps => ps.SupplierId);
+    }
 }
