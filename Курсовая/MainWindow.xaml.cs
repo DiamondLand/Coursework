@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.Reflection;
 using System.Windows;
 using Курсовая;
 
@@ -89,6 +90,20 @@ public class ProductCategory
     public int ProductCategoryId { get; set; }
 }
 
+public class ShoppingAddress
+{
+    public int ShoppingAddressId { get; set; }
+    public int UserId { get; set; }
+    public User User { get; set; }
+    public string AddressLine1 { get; set; }
+    public string AddressLine2 { get; set; }
+    public string City { get; set; }
+    public string State { get; set; }
+    public string PostalCode { get; set; }
+    public string Country { get; set; }
+}
+
+
 public class Order
 {
     public int OrderId { get; set; }
@@ -96,6 +111,24 @@ public class Order
     public User User { get; set; }
     public DateTime OrderDate { get; set; }
     public string OrderStatus { get; set; }
+}
+
+public class PaymentMethod
+{
+    public int PaymentMethodId { get; set; }
+    public string Name { get; set; }
+    public string Description { get; set; }
+}
+
+public class OrderPayment
+{
+    public int OrderPaymentId { get; set; }
+    public int OrderId { get; set; }
+    public Order Order { get; set; }
+    public int PaymentMethodId { get; set; }
+    public PaymentMethod PaymentMethod { get; set; }
+    public decimal AmountPaid { get; set; }
+    public DateTime PaymentDate { get; set; }
 }
 
 public class OrderItem
@@ -126,9 +159,33 @@ public class StoreContext : DbContext
     public DbSet<Order> Orders { get; set; }
     public DbSet<OrderItem> OrderItems { get; set; }
     public DbSet<Report> Reports { get; set; }
+    public DbSet<ShoppingAddress> ShoppingAddresses { get; set; }
+    public DbSet<PaymentMethod> PaymentMethods { get; set; }
+    public DbSet<OrderPayment> OrderPayments { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.UseSqlServer("Server=LAPTOP-GB3V8CN4\\SQLYADRO;Database=Курсовая;Trusted_Connection=True;");
+        optionsBuilder.UseSqlServer("Server=LAPTOP-GB3V8CN4\\SQLYADRO;Database=Курсовая;Trusted_Connection=True;", options =>
+        {
+            options.MigrationsAssembly(Assembly.GetExecutingAssembly().FullName);
+        });
     }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
+
+        modelBuilder.Entity<User>().ToTable("Users");
+        modelBuilder.Entity<Product>().ToTable("Products");
+        modelBuilder.Entity<Category>().ToTable("Categories");
+        modelBuilder.Entity<ProductCategory>().ToTable("ProductCategories");
+        modelBuilder.Entity<Order>().ToTable("Orders");
+        modelBuilder.Entity<OrderItem>().ToTable("OrderItems");
+        modelBuilder.Entity<Report>().ToTable("Reports");
+        modelBuilder.Entity<ShoppingAddress>().ToTable("ShoppingAddresses");
+        modelBuilder.Entity<PaymentMethod>().ToTable("PaymentMethods");
+        modelBuilder.Entity<OrderPayment>().ToTable("OrderPayments");
+    }
+
 }
