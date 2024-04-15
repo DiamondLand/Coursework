@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Reflection;
 using System.Windows;
-using Курсовая;
 
 namespace Coursework
 {
@@ -15,13 +14,17 @@ namespace Coursework
         public MainWindow()
         {
             InitializeComponent();
-        }
-
-        private void OpenWindow1_Click(object sender, RoutedEventArgs e)
-        {
-            var window1 = new Window1(context); // Передача контекста базы данных
-            window1.Show(); // Показать Window1
-            Hide(); // Скрыть основное окно
+            try
+            {
+                // Подключение к базе данных
+                context = new StoreContext();
+                context.Database.EnsureCreated();
+                MessageBox.Show("Подключение к базе данных выполнено успешно.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка подключения к базе данных: {ex.Message}");
+            }
         }
 
         private void ConnectButton_Click(object sender, RoutedEventArgs e)
