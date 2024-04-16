@@ -8,7 +8,6 @@
 
         <!-- Поля ввода для нового пользователя -->
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Bottom" Orientation="Horizontal" Margin="0,20,0,0">
-
             <!-- Заполнение имени -->
             <TextBlock Text="Имя" Foreground="Gray" Margin="5,0,0,0" VerticalAlignment="Center" IsHitTestVisible="False">
                 <TextBlock.Style>

@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Windows;
 using System.Text.RegularExpressions;
+using System.Windows.Controls;
 
 namespace Coursework
 {
@@ -11,6 +12,7 @@ namespace Coursework
         public UserWindow()
         {
             InitializeComponent();
+            UsersDataGrid.SelectionChanged += UsersDataGrid_SelectionChanged;
             context = new StoreContext();
             LoadUsers();
         }
@@ -65,6 +67,28 @@ namespace Coursework
             ClearInputFields();
         }
 
+        private void UsersDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (UsersDataGrid.SelectedItem != null)
+            {
+                // Получаем выбранного пользователя из DataGrid
+                User selectedUser = (User)UsersDataGrid.SelectedItem;
+
+                // Показываем диалоговое окно подтверждения удаления
+                MessageBoxResult result = MessageBox.Show($"Вы уверены, что хотите удалить пользователя {selectedUser.FirstName} {selectedUser.LastName}?",
+                                                          "Подтверждение удаления", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+                // Если пользователь подтвердил удаление, удаляем пользователя из базы данных
+                if (result == MessageBoxResult.Yes)
+                {
+                    context.Users.Remove(selectedUser);
+                    context.SaveChanges();
+
+                    // Перезагружаем данные, чтобы обновить DataGrid
+                    LoadUsers();
+                }
+            }
+        }
 
         private void ClearInputFields()
         {
