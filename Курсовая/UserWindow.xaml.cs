@@ -122,7 +122,6 @@ namespace Coursework
             }
         }
 
-
         private void ClearInputFields()
         {
             FirstNameTextBox.Text = "";

@@ -5,8 +5,7 @@
 
     <Grid>
         <!-- DataGrid для отображения пользователей -->
-        <!-- DataGrid для отображения пользователей -->
-        <DataGrid x:Name="UsersDataGrid" AutoGenerateColumns="False" CanUserAddRows="True" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectionMode="Single" MouseDoubleClick="UsersDataGrid_MouseDoubleClick">
+        <DataGrid x:Name="UsersDataGrid" AutoGenerateColumns="False" CanUserAddRows="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectionMode="Single" MouseDoubleClick="UsersDataGrid_MouseDoubleClick">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Имя" Binding="{Binding FirstName}"/>
                 <DataGridTextColumn Header="Фамилия" Binding="{Binding LastName}"/>
