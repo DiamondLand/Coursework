@@ -2,9 +2,10 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Пользователи" Height="450" Width="800">
+
     <Grid>
         <!-- DataGrid для отображения пользователей -->
-        <DataGrid x:Name="UsersDataGrid" AutoGenerateColumns="True" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        <DataGrid x:Name="UsersDataGrid" AutoGenerateColumns="True" CanUserAddRows="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectionMode="Single" MouseDoubleClick="UsersDataGrid_MouseDoubleClick"/>
 
         <!-- Поля ввода для нового пользователя -->
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Bottom" Orientation="Horizontal" Margin="0,20,0,0">

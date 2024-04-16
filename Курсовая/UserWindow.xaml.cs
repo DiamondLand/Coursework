@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Text.RegularExpressions;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace Coursework
 {
@@ -12,7 +13,7 @@ namespace Coursework
         public UserWindow()
         {
             InitializeComponent();
-            UsersDataGrid.SelectionChanged += UsersDataGrid_SelectionChanged;
+            UsersDataGrid.SelectionChanged += UsersDataGrid_DeleteData;
             context = new StoreContext();
             LoadUsers();
         }
@@ -56,24 +57,49 @@ namespace Coursework
                 Phone = PhoneTextBox.Text,
             };
 
-            // Добавляем пользователя в базу и сохраняем изменения
-            context.Users.Add(newUser);
+            if (UsersDataGrid.SelectedItem != null)
+            {
+                // Если выбран пользователь из DataGrid, обновляем его данные
+                User selectedUser = (User)UsersDataGrid.SelectedItem;
+                selectedUser.FirstName = newUser.FirstName;
+                selectedUser.LastName = newUser.LastName;
+                selectedUser.Email = newUser.Email;
+                selectedUser.Phone = newUser.Phone;
+            }
+            else
+            {
+                // Если не выбран ни один пользователь из DataGrid, добавляем нового пользователя в базу
+                context.Users.Add(newUser);
+            }
+
+            // Сохраняем изменения в базе данных
             context.SaveChanges();
 
             // Перезагружаем данные, чтобы обновить DataGrid
             LoadUsers();
 
-            // Очищаем поля ввода после добавления пользователя
+            // Очищаем поля ввода после добавления или обновления пользователя
             ClearInputFields();
         }
 
-        private void UsersDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void UsersDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if (UsersDataGrid.SelectedItem != null)
+            // Проверяем, что выбранная строка не пуста и является объектом типа User
+            if (UsersDataGrid.SelectedItem != null && UsersDataGrid.SelectedItem is User selectedUser)
             {
-                // Получаем выбранного пользователя из DataGrid
-                User selectedUser = (User)UsersDataGrid.SelectedItem;
+                // Заполняем поля ввода данными выбранного пользователя
+                FirstNameTextBox.Text = selectedUser.FirstName;
+                LastNameTextBox.Text = selectedUser.LastName;
+                EmailTextBox.Text = selectedUser.Email;
+                PhoneTextBox.Text = selectedUser.Phone;
+            }
+        }
 
+        private void UsersDataGrid_DeleteData(object sender, SelectionChangedEventArgs e)
+        {
+            // Проверяем, что выбранная строка не пуста и является объектом типа User
+            if (UsersDataGrid.SelectedItem != null && UsersDataGrid.SelectedItem is User selectedUser)
+            {
                 // Показываем диалоговое окно подтверждения удаления
                 MessageBoxResult result = MessageBox.Show($"Вы уверены, что хотите удалить пользователя {selectedUser.FirstName} {selectedUser.LastName}?",
                                                           "Подтверждение удаления", MessageBoxButton.YesNo, MessageBoxImage.Question);
@@ -81,11 +107,19 @@ namespace Coursework
                 // Если пользователь подтвердил удаление, удаляем пользователя из базы данных
                 if (result == MessageBoxResult.Yes)
                 {
-                    context.Users.Remove(selectedUser);
-                    context.SaveChanges();
+                    if (selectedUser.FirstName != null & selectedUser.LastName != null & 
+                        selectedUser.Email != null & selectedUser.Phone != null)
+                    {
+                        context.Users.Remove(selectedUser);
+                        context.SaveChanges();
 
-                    // Перезагружаем данные, чтобы обновить DataGrid
-                    LoadUsers();
+                        // Перезагружаем данные, чтобы обновить DataGrid
+                        LoadUsers();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Удалить пустую ячейку не получится!", "О-о-у", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
                 }
             }
         }
