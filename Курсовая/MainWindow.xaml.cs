@@ -27,6 +27,12 @@ namespace Coursework
             }
         }
 
+        private void ShowUsers_Click(object sender, RoutedEventArgs e)
+        {
+            UserWindow userWindow = new UserWindow();
+            userWindow.ShowDialog();
+        }
+
         private void ConnectButton_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -55,6 +61,7 @@ namespace Coursework
                 MessageBox.Show($"Ошибка отключения от базы данных: {ex.Message}");
             }
         }
+
     }
 }
 
@@ -64,8 +71,7 @@ public class User
     public string FirstName { get; set; }
     public string LastName { get; set; }
     public string Email { get; set; }
-    public string Password { get; set; }
-    public string Role { get; set; }
+    public string Phone { get; set; }
 }
 
 public class Product
