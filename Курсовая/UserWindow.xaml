@@ -5,7 +5,22 @@
 
     <Grid>
         <!-- DataGrid для отображения пользователей -->
-        <DataGrid x:Name="UsersDataGrid" AutoGenerateColumns="True" CanUserAddRows="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectionMode="Single" MouseDoubleClick="UsersDataGrid_MouseDoubleClick"/>
+        <!-- DataGrid для отображения пользователей -->
+        <DataGrid x:Name="UsersDataGrid" AutoGenerateColumns="False" CanUserAddRows="True" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectionMode="Single" MouseDoubleClick="UsersDataGrid_MouseDoubleClick">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Имя" Binding="{Binding FirstName}"/>
+                <DataGridTextColumn Header="Фамилия" Binding="{Binding LastName}"/>
+                <DataGridTextColumn Header="Email" Binding="{Binding Email}"/>
+                <DataGridTextColumn Header="Телефон" Binding="{Binding Phone}"/>
+                <DataGridTemplateColumn Header="">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Удалить" Click="DeleteButton_Click"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
 
         <!-- Поля ввода для нового пользователя -->
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Bottom" Orientation="Horizontal" Margin="0,20,0,0">
@@ -76,6 +91,7 @@
                 </TextBlock.Style>
             </TextBlock>
             <TextBox x:Name="PhoneTextBox" Width="100" Margin="5"/>
+
             <Button Content="Добавить пользователя" Click="AddUser_Click" Margin="5"/>
         </StackPanel>
     </Grid>

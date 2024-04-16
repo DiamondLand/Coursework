@@ -13,7 +13,6 @@ namespace Coursework
         public UserWindow()
         {
             InitializeComponent();
-            UsersDataGrid.SelectionChanged += UsersDataGrid_DeleteData;
             context = new StoreContext();
             LoadUsers();
         }
@@ -95,9 +94,8 @@ namespace Coursework
             }
         }
 
-        private void UsersDataGrid_DeleteData(object sender, SelectionChangedEventArgs e)
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
-            // Проверяем, что выбранная строка не пуста и является объектом типа User
             if (UsersDataGrid.SelectedItem != null && UsersDataGrid.SelectedItem is User selectedUser)
             {
                 // Показываем диалоговое окно подтверждения удаления
@@ -107,8 +105,8 @@ namespace Coursework
                 // Если пользователь подтвердил удаление, удаляем пользователя из базы данных
                 if (result == MessageBoxResult.Yes)
                 {
-                    if (selectedUser.FirstName != null & selectedUser.LastName != null & 
-                        selectedUser.Email != null & selectedUser.Phone != null)
+                    if (selectedUser.FirstName != null && selectedUser.LastName != null &&
+                        selectedUser.Email != null && selectedUser.Phone != null)
                     {
                         context.Users.Remove(selectedUser);
                         context.SaveChanges();
@@ -123,6 +121,7 @@ namespace Coursework
                 }
             }
         }
+
 
         private void ClearInputFields()
         {
