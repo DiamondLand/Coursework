@@ -14,23 +14,13 @@ namespace Coursework
         public MainWindow()
         {
             InitializeComponent();
-            try
-            {
-                // Подключение к базе данных
-                context = new StoreContext();
-                context.Database.EnsureCreated();
-                MessageBox.Show("Подключение к базе данных выполнено успешно.");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Ошибка подключения к базе данных: {ex.Message}");
-            }
         }
 
         private void ShowUsers_Click(object sender, RoutedEventArgs e)
         {
             UserWindow userWindow = new UserWindow();
             userWindow.ShowDialog();
+            this.Close();
         }
 
         private void ConnectButton_Click(object sender, RoutedEventArgs e)
