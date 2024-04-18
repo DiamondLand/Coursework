@@ -46,11 +46,11 @@
                     </LinearGradientBrush>
                 </Button.Background>
             </Button>
-            <Button Content="Отключиться от базы данных" Click="DisconnectButton_Click" FontFamily="Yu Gothic UI Semibold" FontSize="12" Width="190" Height="25" BorderBrush="#FF761414">
+            <Button Content="Отключиться от базы данных" Click="DisconnectButton_Click" FontFamily="Yu Gothic UI Semibold" FontSize="12" Width="190" Height="25" BorderBrush="#FF6E1C1C">
                 <Button.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="#FFE22727"/>
-                        <GradientStop Color="#FF671111" Offset="1"/>
+                        <GradientStop Color="#FF671A1A" Offset="1"/>
+                        <GradientStop Color="#FFF14444"/>
                     </LinearGradientBrush>
                 </Button.Background>
             </Button>
