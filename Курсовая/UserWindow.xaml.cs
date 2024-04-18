@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using System.Windows;
 using System.Text.RegularExpressions;
-using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace Coursework
@@ -26,7 +25,6 @@ namespace Coursework
 
         private void AddUser_Click(object sender, RoutedEventArgs e)
         {
-            // Проверяем, что все поля ввода заполнены
             if (string.IsNullOrWhiteSpace(FirstNameTextBox.Text) || string.IsNullOrWhiteSpace(LastNameTextBox.Text) ||
                 string.IsNullOrWhiteSpace(EmailTextBox.Text) || string.IsNullOrWhiteSpace(PhoneTextBox.Text))
             {
@@ -34,14 +32,12 @@ namespace Coursework
                 return;
             }
 
-            // Проверяем корректность email с помощью регулярного выражения
             if (!Regex.IsMatch(EmailTextBox.Text, @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"))
             {
                 MessageBox.Show("Некорректный формат email.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
-            // Проверяем, что номер телефона начинается с "+7"
             if (!PhoneTextBox.Text.StartsWith("+7") || PhoneTextBox.Text.Length != 12)
             {
                 MessageBox.Show("Номер телефона должен начинаться с '+7' и состоять из 12 символов.", "О-о-у", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -57,28 +53,22 @@ namespace Coursework
                 Phone = PhoneTextBox.Text,
             };
 
+            // Если выбран пользователь из DataGrid, обновляем его данные
             if (UsersDataGrid.SelectedItem != null & isEditing)
             {
-                // Если выбран пользователь из DataGrid, обновляем его данные
                 User selectedUser = (User)UsersDataGrid.SelectedItem;
                 selectedUser.FirstName = newUser.FirstName;
                 selectedUser.LastName = newUser.LastName;
                 selectedUser.Email = newUser.Email;
                 selectedUser.Phone = newUser.Phone;
             }
-            else
+            else // Если создаётся новый пользователь
             {
-                // Если не выбран ни один пользователь из DataGrid, добавляем нового пользователя в базу
                 context.Users.Add(newUser);
             }
 
-            // Сохраняем изменения в базе данных
-            context.SaveChanges();
-
-            // Перезагружаем данные, чтобы обновить DataGrid
+            context.SaveChanges(); // Сохраняем изменения в базе данных
             LoadUsers();
-
-            // Очищаем поля ввода после добавления или обновления пользователя
             ClearInputFields();
         }
 
@@ -109,11 +99,10 @@ namespace Coursework
         {
             if (UsersDataGrid.SelectedItem != null && UsersDataGrid.SelectedItem is User selectedUser)
             {
-                // Показываем диалоговое окно подтверждения удаления
+                // Диалоговое окно подтверждения удаления
                 MessageBoxResult result = MessageBox.Show($"Вы уверены, что хотите удалить пользователя {selectedUser.FirstName} {selectedUser.LastName}?",
                                                           "Подтверждение удаления", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
-                // Если пользователь подтвердил удаление, удаляем пользователя из базы данных
                 if (result == MessageBoxResult.Yes)
                 {
                     if (selectedUser.FirstName != null && selectedUser.LastName != null &&
@@ -121,8 +110,6 @@ namespace Coursework
                     {
                         context.Users.Remove(selectedUser);
                         context.SaveChanges();
-
-                        // Перезагружаем данные, чтобы обновить DataGrid
                         LoadUsers();
                     }
                     else
