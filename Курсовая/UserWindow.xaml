@@ -56,7 +56,6 @@
             </Setter>
         </Style>
 
-
         <Style TargetType="{x:Type DataGrid}">
             <Setter Property="Background" Value="#444444"/>
             <Setter Property="Foreground" Value="White"/>
