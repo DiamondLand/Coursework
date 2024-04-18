@@ -84,7 +84,7 @@
                   VerticalAlignment="Stretch" 
                   SelectionMode="Single" 
                   MouseDoubleClick="UsersDataGrid_MouseDoubleClick"
-                  ColumnHeaderStyle="{StaticResource DataGridColumnHeaderSelectedStyle}">
+                  ColumnHeaderStyle="{StaticResource DataGridColumnHeaderSelectedStyle}" SelectionChanged="UsersDataGrid_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Имя" Binding="{Binding FirstName}"/>
                 <DataGridTextColumn Header="Фамилия" Binding="{Binding LastName}"/>
@@ -104,25 +104,40 @@
             <!-- Заполнение имени -->
             <StackPanel Orientation="Vertical">
                 <TextBlock Text="Имя" Foreground="Gray" Margin="5,0,0,0" VerticalAlignment="Center" IsHitTestVisible="False"/>
-                <TextBox x:Name="FirstNameTextBox" Width="100" Margin="5"/>
+                <TextBox x:Name="FirstNameTextBox" Width="100" Margin="5" BorderBrush="#FF676767"/>
             </StackPanel>
             <!-- Заполнение фамилии -->
             <StackPanel Orientation="Vertical">
                 <TextBlock Text="Фамилия" Foreground="Gray" Margin="5,0,0,0" VerticalAlignment="Center" IsHitTestVisible="False"/>
-                <TextBox x:Name="LastNameTextBox" Width="100" Margin="5"/>
+                <TextBox x:Name="LastNameTextBox" Width="100" Margin="5" Background="White" BorderBrush="#FF676767"/>
             </StackPanel>
             <!-- Заполнение email -->
             <StackPanel Orientation="Vertical">
                 <TextBlock Text="Email" Foreground="Gray" Margin="5,0,0,0" VerticalAlignment="Center" IsHitTestVisible="False"/>
-                <TextBox x:Name="EmailTextBox" Width="100" Margin="5"/>
+                <TextBox x:Name="EmailTextBox" Width="100" Margin="5" BorderBrush="#FF676767"/>
             </StackPanel>
             <!-- Заполнение телефона -->
             <StackPanel Orientation="Vertical">
                 <TextBlock Text="Телефон" Foreground="Gray" Margin="5,0,0,0" VerticalAlignment="Center" IsHitTestVisible="False"/>
-                <TextBox x:Name="PhoneTextBox" Width="100" Margin="5"/>
+                <TextBox x:Name="PhoneTextBox" Width="100" Margin="5" BorderBrush="#FF676767" Panel.ZIndex="20"/>
             </StackPanel>
-            <Button Content="Добавить пользователя" Click="AddUser_Click" Style="{StaticResource AddButtonStyle}" Margin="5"/>
-            <Button Content="Вернуться в главное меню" Click="ReturnToMainMenu_Click" Style="{StaticResource AddButtonStyle}" Margin="5"/>
+            <Button Content="Добавить / Обновить" Click="AddUser_Click" Style="{StaticResource AddButtonStyle}" Margin="5" FontSize="12" FontFamily="Arial" Foreground="White" Width="140" BorderBrush="#FFF25931">
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFF48D00" Offset="1"/>
+                        <GradientStop Color="#FFF14444" Offset="0"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+            <Button Content="Вернуться в меню" Click="ReturnToMainMenu_Click" Style="{StaticResource AddButtonStyle}" Margin="5" FontSize="12" FontFamily="Arial" Width="120" BorderBrush="#FFF25931">
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black"/>
+                        <GradientStop Color="#FFF48D00" Offset="1"/>
+                        <GradientStop Color="#FFF14444"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
         </StackPanel>
     </Grid>
 </Window>

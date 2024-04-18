@@ -139,5 +139,10 @@ namespace Coursework
         {
             context.Dispose();
         }
+
+        private void UsersDataGrid_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

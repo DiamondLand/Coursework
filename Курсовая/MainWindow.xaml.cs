@@ -104,7 +104,6 @@ public class ShoppingAddress
     public string Country { get; set; }
 }
 
-
 public class Order
 {
     public int OrderId { get; set; }

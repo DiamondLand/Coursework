@@ -30,9 +30,30 @@
     </Window.Resources>
     <Grid>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button Content="Пользователи" Click="ShowUsers_Click" Background="#0078d4"/>
-            <Button Content="Подключиться к базе данных" Click="ConnectButton_Click" Background="Green"/>
-            <Button Content="Отключиться от базы данных" Click="DisconnectButton_Click" Background="Red"/>
+            <Button Content="Пользователи" Click="ShowUsers_Click" FontFamily="Yu Gothic UI Semibold" Height="25" BorderBrush="#FFF25931">
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFF14444"/>
+                        <GradientStop Color="#FFF48D00" Offset="1"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+            <Button Content="Подключиться к базе данных" Click="ConnectButton_Click" FontFamily="Yu Gothic UI Semibold" FontSize="12" Width="190" Height="25" BorderBrush="#FF0A490A">
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Green"/>
+                        <GradientStop Color="#FF0B450B" Offset="1"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+            <Button Content="Отключиться от базы данных" Click="DisconnectButton_Click" FontFamily="Yu Gothic UI Semibold" FontSize="12" Width="190" Height="25" BorderBrush="#FF761414">
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFE22727"/>
+                        <GradientStop Color="#FF671111" Offset="1"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
         </StackPanel>
     </Grid>
 </Window>
