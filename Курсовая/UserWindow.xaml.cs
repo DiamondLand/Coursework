@@ -9,6 +9,7 @@ namespace Coursework
     public partial class UserWindow : Window
     {
         private StoreContext context;
+        private bool isEditing = false;
 
         public UserWindow()
         {
@@ -56,7 +57,7 @@ namespace Coursework
                 Phone = PhoneTextBox.Text,
             };
 
-            if (UsersDataGrid.SelectedItem != null)
+            if (UsersDataGrid.SelectedItem != null & isEditing)
             {
                 // Если выбран пользователь из DataGrid, обновляем его данные
                 User selectedUser = (User)UsersDataGrid.SelectedItem;
@@ -86,11 +87,21 @@ namespace Coursework
             // Проверяем, что выбранная строка не пуста и является объектом типа User
             if (UsersDataGrid.SelectedItem != null && UsersDataGrid.SelectedItem is User selectedUser)
             {
-                // Заполняем поля ввода данными выбранного пользователя
-                FirstNameTextBox.Text = selectedUser.FirstName;
-                LastNameTextBox.Text = selectedUser.LastName;
-                EmailTextBox.Text = selectedUser.Email;
-                PhoneTextBox.Text = selectedUser.Phone;
+                if (!isEditing) // Если не в режиме редактирования, начинаем редактирование
+                {
+                    // Заполняем поля ввода данными выбранного пользователя
+                    FirstNameTextBox.Text = selectedUser.FirstName;
+                    LastNameTextBox.Text = selectedUser.LastName;
+                    EmailTextBox.Text = selectedUser.Email;
+                    PhoneTextBox.Text = selectedUser.Phone;
+
+                    isEditing = true;
+                }
+                else // Если уже в режиме редактирования, завершаем редактирование
+                {
+                    ClearInputFields();
+                    isEditing = false;
+                }
             }
         }
 
