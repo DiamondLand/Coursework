@@ -128,6 +128,13 @@ namespace Coursework
             PhoneTextBox.Text = "";
         }
 
+        private void ReturnToMainMenu_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+            this.Close();
+        }
+
         private void Window_Closed(object sender, System.EventArgs e)
         {
             context.Dispose();
