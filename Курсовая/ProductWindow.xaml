@@ -1,0 +1,57 @@
+﻿<Window x:Class="Курсовая.ProductWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="ProductWindow" Height="450" Width="800">
+    <Grid>
+        <!-- DataGrid для отображения таблицы -->
+        <DataGrid x:Name="DataGrid"
+                  AutoGenerateColumns="False" 
+                  CanUserAddRows="False" 
+                  HorizontalAlignment="Stretch" 
+                  VerticalAlignment="Stretch" 
+                  SelectionMode="Single" 
+                  MouseDoubleClick="DataGrid_MouseDoubleClick">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Названиие" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Описание" Binding="{Binding Description}"/>
+                <DataGridTextColumn Header="Цена" Binding="{Binding Price}"/>
+                <DataGridTextColumn Header="Штук на складе" Binding="{Binding QuantityInStock}"/>
+                <DataGridTemplateColumn Header="">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Удалить" Click="DeleteButton_Click" Margin="5" FontSize="10" FontFamily="Arial" Width="60"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <!-- Поля ввода для новых данных -->
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Bottom" Orientation="Horizontal" Margin="0,20,0,0">
+            <!-- Заполнение названиы -->
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Название" Foreground="Gray" Margin="5,0,0,0" VerticalAlignment="Center" IsHitTestVisible="False"/>
+                <TextBox x:Name="NameTextBox" Width="100" Margin="5" BorderBrush="#FF676767"/>
+            </StackPanel>
+            <!-- Заполнение описания -->
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Описание" Foreground="Gray" Margin="5,0,0,0" VerticalAlignment="Center" IsHitTestVisible="False"/>
+                <TextBox x:Name="DescriptionTextBox" Width="100" Margin="5" Background="White" BorderBrush="#FF676767"/>
+            </StackPanel>
+            <!-- Заполнение цены -->
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Цена" Foreground="Gray" Margin="5,0,0,0" VerticalAlignment="Center" IsHitTestVisible="False"/>
+                <TextBox x:Name="PriceTextBox" Width="100" Margin="5" BorderBrush="#FF676767"/>
+            </StackPanel>
+            <!-- Заполнение количества на складе -->
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Штук на складе" Foreground="Gray" Margin="5,0,0,0" VerticalAlignment="Center" IsHitTestVisible="False"/>
+                <TextBox x:Name="QuantityInStockTextBox" Width="100" Margin="5" BorderBrush="#FF676767" Panel.ZIndex="20"/>
+            </StackPanel>
+            <Button Content="Добавить / Обновить" Click="Add_Click" Margin="5" FontSize="12" FontFamily="Arial" Width="140"/>
+            <Button Content="Вернуться в меню" Click="ReturnToMainMenu_Click" Margin="5" FontSize="12" FontFamily="Arial" Width="120"/>
+        </StackPanel>
+    </Grid>
+</Window>

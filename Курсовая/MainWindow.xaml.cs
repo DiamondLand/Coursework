@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Reflection;
 using System.Windows;
+using Курсовая;
 
 namespace Coursework
 {
@@ -20,7 +21,12 @@ namespace Coursework
         {
             UserWindow userWindow = new UserWindow();
             userWindow.ShowDialog();
-            this.Close();
+        }
+
+        private void ShowProducts_Click(object sender, RoutedEventArgs e)
+        {
+            ProductWindow productWindow = new ProductWindow();
+            productWindow.ShowDialog();
         }
 
         private void ConnectButton_Click(object sender, RoutedEventArgs e)
