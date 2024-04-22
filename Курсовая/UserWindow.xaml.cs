@@ -14,16 +14,16 @@ namespace Coursework
         {
             InitializeComponent();
             context = new StoreContext();
-            LoadUsers();
+            LoadTable();
         }
 
-        private void LoadUsers()
+        private void LoadTable()
         {
             var users = context.Users.ToList();
-            UsersDataGrid.ItemsSource = users;
+            DataGrid.ItemsSource = users;
         }
 
-        private void AddUser_Click(object sender, RoutedEventArgs e)
+        private void Add_Click(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrWhiteSpace(FirstNameTextBox.Text) || string.IsNullOrWhiteSpace(LastNameTextBox.Text) ||
                 string.IsNullOrWhiteSpace(EmailTextBox.Text) || string.IsNullOrWhiteSpace(PhoneTextBox.Text))
@@ -54,9 +54,9 @@ namespace Coursework
             };
 
             // Если выбран пользователь из DataGrid, обновляем его данные
-            if (UsersDataGrid.SelectedItem != null & isEditing)
+            if (DataGrid.SelectedItem != null & isEditing)
             {
-                User selectedUser = (User)UsersDataGrid.SelectedItem;
+                User selectedUser = (User)DataGrid.SelectedItem;
                 selectedUser.FirstName = newUser.FirstName;
                 selectedUser.LastName = newUser.LastName;
                 selectedUser.Email = newUser.Email;
@@ -68,14 +68,14 @@ namespace Coursework
             }
 
             context.SaveChanges(); // Сохраняем изменения в базе данных
-            LoadUsers();
+            LoadTable();
             ClearInputFields();
         }
 
-        private void UsersDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void DataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             // Проверяем, что выбранная строка не пуста и является объектом типа User
-            if (UsersDataGrid.SelectedItem != null && UsersDataGrid.SelectedItem is User selectedUser)
+            if (DataGrid.SelectedItem != null && DataGrid.SelectedItem is User selectedUser)
             {
                 if (!isEditing) // Если не в режиме редактирования, начинаем редактирование
                 {
@@ -97,7 +97,7 @@ namespace Coursework
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
-            if (UsersDataGrid.SelectedItem != null && UsersDataGrid.SelectedItem is User selectedUser)
+            if (DataGrid.SelectedItem != null && DataGrid.SelectedItem is User selectedUser)
             {
                 // Диалоговое окно подтверждения удаления
                 MessageBoxResult result = MessageBox.Show($"Вы уверены, что хотите удалить пользователя {selectedUser.FirstName} {selectedUser.LastName}?",
@@ -110,7 +110,7 @@ namespace Coursework
                     {
                         context.Users.Remove(selectedUser);
                         context.SaveChanges();
-                        LoadUsers();
+                        LoadTable();
                     }
                     else
                     {
@@ -140,9 +140,5 @@ namespace Coursework
             context.Dispose();
         }
 
-        private void UsersDataGrid_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
-        {
-
-        }
     }
 }

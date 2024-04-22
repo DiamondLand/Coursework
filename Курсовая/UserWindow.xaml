@@ -4,14 +4,14 @@
     xmlns:av="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="av" x:Class="Coursework.UserWindow"
     Title="Пользователи" Height="450" Width="800">
     <Grid>
-        <!-- DataGrid для отображения пользователей -->
-        <DataGrid x:Name="UsersDataGrid"
+        <!-- DataGrid для отображения таблицы -->
+        <DataGrid x:Name="DataGrid"
                   AutoGenerateColumns="False" 
                   CanUserAddRows="False" 
                   HorizontalAlignment="Stretch" 
                   VerticalAlignment="Stretch" 
                   SelectionMode="Single" 
-                  MouseDoubleClick="UsersDataGrid_MouseDoubleClick" SelectionChanged="UsersDataGrid_SelectionChanged">
+                  MouseDoubleClick="DataGrid_MouseDoubleClick">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Имя" Binding="{Binding FirstName}"/>
                 <DataGridTextColumn Header="Фамилия" Binding="{Binding LastName}"/>
@@ -26,7 +26,7 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <!-- Поля ввода для нового пользователя -->
+        <!-- Поля ввода для новых данных -->
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Bottom" Orientation="Horizontal" Margin="0,20,0,0">
             <!-- Заполнение имени -->
             <StackPanel Orientation="Vertical">
@@ -48,7 +48,7 @@
                 <TextBlock Text="Телефон" Foreground="Gray" Margin="5,0,0,0" VerticalAlignment="Center" IsHitTestVisible="False"/>
                 <TextBox x:Name="PhoneTextBox" Width="100" Margin="5" BorderBrush="#FF676767" Panel.ZIndex="20"/>
             </StackPanel>
-            <Button Content="Добавить / Обновить" Click="AddUser_Click" Margin="5" FontSize="12" FontFamily="Arial" Width="140"/>
+            <Button Content="Добавить / Обновить" Click="Add_Click" Margin="5" FontSize="12" FontFamily="Arial" Width="140"/>
             <Button Content="Вернуться в меню" Click="ReturnToMainMenu_Click" Margin="5" FontSize="12" FontFamily="Arial" Width="120"/>
         </StackPanel>
     </Grid>
