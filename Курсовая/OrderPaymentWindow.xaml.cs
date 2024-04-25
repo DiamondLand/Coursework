@@ -46,10 +46,13 @@ namespace Курсовая
 
         private void LoadOrders()
         {
-            var orders = context.Orders.ToList();
-            OrderComboBox.ItemsSource = orders;
-            OrderComboBox.DisplayMemberPath = "Name";
-            OrderComboBox.SelectedValuePath = "ProductId";
+            var orderItems = context.OrderItems
+                .Include(oi => oi.Product)
+                .ToList();
+
+            OrderComboBox.ItemsSource = orderItems;
+            OrderComboBox.DisplayMemberPath = "Product.Name";
+            OrderComboBox.SelectedValuePath = "OrderItemId";
         }
 
         private void LoadPaymentMethods()
