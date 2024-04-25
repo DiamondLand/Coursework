@@ -20,24 +20,28 @@ namespace Coursework
         private void ShowUsers_Click(object sender, RoutedEventArgs e)
         {
             UserWindow userWindow = new UserWindow();
+            Close();
             userWindow.ShowDialog();
         }
 
         private void ShowProducts_Click(object sender, RoutedEventArgs e)
         {
             ProductWindow productWindow = new ProductWindow();
+            Close();
             productWindow.ShowDialog();
         }
 
         private void ShowCategories_Click(object sender, RoutedEventArgs e)
         {
             CategoryWindow categoryWindow = new CategoryWindow();
+            Close();
             categoryWindow.ShowDialog();
         }
 
         private void ShowProductCategories_Click(object sender, RoutedEventArgs e)
         {
             ProductCategoryWindow productCategoryWindow = new ProductCategoryWindow();
+            Close();
             productCategoryWindow.ShowDialog();
         }
 

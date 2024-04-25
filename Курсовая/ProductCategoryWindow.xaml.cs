@@ -10,7 +10,6 @@ namespace Курсовая
     public partial class ProductCategoryWindow : Window
     {
         private StoreContext context;
-        private bool isEditing = false;
 
         public ProductCategoryWindow()
         {
