@@ -52,6 +52,13 @@ namespace Coursework
             shoppingAddressWindow.ShowDialog();
         }
 
+        private void Order_Click(object sender, RoutedEventArgs e)
+        {
+            OrderWindow orderWindow = new OrderWindow();
+            Close();
+            orderWindow.ShowDialog();
+        }
+
         private void ConnectButton_Click(object sender, RoutedEventArgs e)
         {
             try
