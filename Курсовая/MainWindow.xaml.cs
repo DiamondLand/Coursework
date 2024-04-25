@@ -29,6 +29,18 @@ namespace Coursework
             productWindow.ShowDialog();
         }
 
+        private void ShowCategories_Click(object sender, RoutedEventArgs e)
+        {
+            CategoryWindow categoryWindow = new CategoryWindow();
+            categoryWindow.ShowDialog();
+        }
+
+        private void ShowProductCategories_Click(object sender, RoutedEventArgs e)
+        {
+            ProductCategoryWindow productCategoryWindow = new ProductCategoryWindow();
+            productCategoryWindow.ShowDialog();
+        }
+
         private void ConnectButton_Click(object sender, RoutedEventArgs e)
         {
             try
