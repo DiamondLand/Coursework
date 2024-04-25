@@ -1,0 +1,51 @@
+﻿<Window x:Class="Курсовая.OrderPaymentWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Оплата заказа" Height="450" Width="800">
+    <Grid>
+        <!-- DataGrid для отображения таблицы -->
+        <DataGrid x:Name="DataGrid"
+                  AutoGenerateColumns="False" 
+                  CanUserAddRows="False" 
+                  HorizontalAlignment="Stretch" 
+                  VerticalAlignment="Stretch" 
+                  SelectionMode="Single" 
+                  MouseDoubleClick="DataGrid_MouseDoubleClick">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Заказ" Binding="{Binding OrderItem.Product.Name}"/>
+                <DataGridTextColumn Header="Способ оплаты" Binding="{Binding PaymentMethod.Name}"/>
+                <DataGridTextColumn Header="Количество" Binding="{Binding AmountPaid}"/>
+                <DataGridTemplateColumn Header="">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Удалить" Click="DeleteButton_Click" Margin="5" FontSize="10" FontFamily="Arial" Width="60"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <!-- Поля ввода для новых данных -->
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Bottom" Orientation="Horizontal" Margin="0,20,0,0">
+            <!-- Заполнение заказа -->
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Заказ" Foreground="Gray" Margin="5,0,0,0" VerticalAlignment="Center" IsHitTestVisible="False"/>
+                <ComboBox x:Name="OrderComboBox" Width="150" Margin="5"/>
+            </StackPanel>
+            <!-- Заполнение способа оплаты -->
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Способ оплаты" Foreground="Gray" Margin="5,0,0,0" VerticalAlignment="Center" IsHitTestVisible="False"/>
+                <ComboBox x:Name="OrderPaymentComboBox" Width="100" Margin="5" BorderBrush="#FF676767"/>
+            </StackPanel>
+            <!-- Заполнение количества -->
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Количество" Foreground="Gray" Margin="5,0,0,0" VerticalAlignment="Center" IsHitTestVisible="False"/>
+                <TextBox x:Name="AmountTextBox" Width="50" Margin="5"/>
+            </StackPanel>
+            <Button Content="Добавить / Обновить" Click="Add_Click" Margin="5" FontSize="12" FontFamily="Arial" Width="140"/>
+            <Button Content="Вернуться в меню" Click="ReturnToMainMenu_Click" Margin="5" FontSize="12" FontFamily="Arial" Width="120"/>
+        </StackPanel>
+    </Grid>
+</Window>

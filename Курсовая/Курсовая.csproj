@@ -172,6 +172,12 @@
     <Compile Include="CategoryWindow.xaml.cs">
       <DependentUpon>CategoryWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="OrderItemWindow.xaml.cs">
+      <DependentUpon>OrderItemWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OrderPaymentWindow.xaml.cs">
+      <DependentUpon>OrderPaymentWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="OrderWindow.xaml.cs">
       <DependentUpon>OrderWindow.xaml</DependentUpon>
     </Compile>
@@ -206,6 +212,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="OrderItemWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OrderPaymentWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="OrderWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

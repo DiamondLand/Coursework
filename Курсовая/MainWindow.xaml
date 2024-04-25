@@ -11,6 +11,8 @@
             <Button Content="Адреса доставки" Click="ShowShoppingAddress_Click" FontFamily="Yu Gothic UI Semibold" Height="25"/>
             <Button Content="Заказы" Click="Order_Click" FontFamily="Yu Gothic UI Semibold" Height="25"/>
             <Button Content="Способы оплаты" Click="PaymentMethod_Click" FontFamily="Yu Gothic UI Semibold" Height="25"/>
+            <Button Content="Элементы заказа" Click="OrderItem_Click" FontFamily="Yu Gothic UI Semibold" Height="25"/>
+            <Button Content="Оплата заказа" Click="OrderPayment_Click" FontFamily="Yu Gothic UI Semibold" Height="25"/>
             
             <Button Content="Подключиться к базе данных" Click="ConnectButton_Click" FontFamily="Yu Gothic UI Semibold" FontSize="12" Width="190" Height="25"/>
             <Button Content="Отключиться от базы данных" Click="DisconnectButton_Click" FontFamily="Yu Gothic UI Semibold" FontSize="12" Width="190" Height="25"/>

@@ -66,6 +66,19 @@ namespace Coursework
             paymentMethodWindow.ShowDialog();
         }
 
+        private void OrderItem_Click(object sender, RoutedEventArgs e)
+        {
+            OrderItemWindow orderItemWindow = new OrderItemWindow();
+            Close();
+            orderItemWindow.ShowDialog();
+        }
+        private void OrderPayment_Click(object sender, RoutedEventArgs e)
+        {
+            OrderPaymentWindow orderPaymentWindow = new OrderPaymentWindow();
+            Close();
+            orderPaymentWindow.ShowDialog();
+        }
+
         private void ConnectButton_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -162,17 +175,6 @@ public class PaymentMethod
     public string Description { get; set; }
 }
 
-public class OrderPayment
-{
-    public int OrderPaymentId { get; set; }
-    public int OrderId { get; set; }
-    public Order Order { get; set; }
-    public int PaymentMethodId { get; set; }
-    public PaymentMethod PaymentMethod { get; set; }
-    public decimal AmountPaid { get; set; }
-    public DateTime PaymentDate { get; set; }
-}
-
 public class OrderItem
 {
     public int OrderItemId { get; set; }
@@ -181,6 +183,17 @@ public class OrderItem
     public int ProductId { get; set; }
     public Product Product { get; set; }
     public int Quantity { get; set; }
+}
+
+public class OrderPayment
+{
+    public int OrderPaymentId { get; set; }
+    public int OrderId { get; set; }
+    public OrderItem OrderItem { get; set; }
+    public int PaymentMethodId { get; set; }
+    public PaymentMethod PaymentMethod { get; set; }
+    public decimal AmountPaid { get; set; }
+    public DateTime PaymentDate { get; set; }
 }
 
 public class Supplier
