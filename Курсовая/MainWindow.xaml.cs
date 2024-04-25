@@ -45,6 +45,13 @@ namespace Coursework
             productCategoryWindow.ShowDialog();
         }
 
+        private void ShowShoppingAddress_Click(object sender, RoutedEventArgs e)
+        {
+            ShoppingAddressWindow shoppingAddressWindow = new ShoppingAddressWindow();
+            Close();
+            shoppingAddressWindow.ShowDialog();
+        }
+
         private void ConnectButton_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -113,18 +120,17 @@ public class ProductCategory
     public int ProductCategoryId { get; set; }
 }
 
-public class ShoppingAddress
-{
-    public int ShoppingAddressId { get; set; }
-    public int UserId { get; set; }
-    public User User { get; set; }
-    public string AddressLine1 { get; set; }
-    public string AddressLine2 { get; set; }
-    public string City { get; set; }
-    public string State { get; set; }
-    public string PostalCode { get; set; }
-    public string Country { get; set; }
-}
+    public class ShoppingAddress
+    {
+        public int ShoppingAddressId { get; set; }
+        public int UserId { get; set; }
+        public User User { get; set; }
+        public string AddressLine1 { get; set; }
+        public string AddressLine2 { get; set; }
+        public string City { get; set; }
+        public string PostalCode { get; set; }
+        public string Country { get; set; }
+    }
 
 public class Order
 {

@@ -11,7 +11,7 @@
           CanUserAddRows="False" 
           HorizontalAlignment="Stretch" 
           VerticalAlignment="Stretch" 
-          SelectionMode="Single">
+          SelectionMode="Single" SelectionChanged="ProductCategoryDataGrid_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTemplateColumn Header="Товар">
                     <DataGridTemplateColumn.CellTemplate>
@@ -38,7 +38,10 @@
         </DataGrid>
 
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Bottom" Orientation="Horizontal" Margin="0,20,0,0">
+            <TextBlock Text="Товар" Foreground="Gray" Margin="5,0,0,0" VerticalAlignment="Center" IsHitTestVisible="False"/>
             <ComboBox x:Name="ProductComboBox" Width="150" Margin="5"/>
+
+            <TextBlock Text="Категория" Foreground="Gray" Margin="5,0,0,0" VerticalAlignment="Center" IsHitTestVisible="False"/>
             <ComboBox x:Name="CategoryComboBox" Width="150" Margin="5"/>
             <Button Content="Добавить / Обновить" Click="AddProductCategory_Click" Margin="5" FontSize="12" FontFamily="Arial" Width="140"/>
             <Button Content="Вернуться в меню" Click="ReturnToMainMenu_Click" Margin="5" FontSize="12" FontFamily="Arial" Width="120"/>

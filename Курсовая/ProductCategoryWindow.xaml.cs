@@ -106,5 +106,10 @@ namespace Курсовая
         {
             context.Dispose();
         }
+
+        private void ProductCategoryDataGrid_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
