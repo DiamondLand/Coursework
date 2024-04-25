@@ -59,6 +59,13 @@ namespace Coursework
             orderWindow.ShowDialog();
         }
 
+        private void PaymentMethod_Click(object sender, RoutedEventArgs e)
+        {
+            PaymentMethodWindow paymentMethodWindow = new PaymentMethodWindow();
+            Close();
+            paymentMethodWindow.ShowDialog();
+        }
+
         private void ConnectButton_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -127,7 +134,7 @@ public class ProductCategory
     public int ProductCategoryId { get; set; }
 }
 
-    public class ShoppingAddress
+public class ShoppingAddress
     {
         public int ShoppingAddressId { get; set; }
         public int UserId { get; set; }

@@ -175,6 +175,9 @@
     <Compile Include="OrderWindow.xaml.cs">
       <DependentUpon>OrderWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PaymentMethodWindow.xaml.cs">
+      <DependentUpon>PaymentMethodWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ProductCategoryWindow.xaml.cs">
       <DependentUpon>ProductCategoryWindow.xaml</DependentUpon>
     </Compile>
@@ -204,6 +207,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="OrderWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PaymentMethodWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
