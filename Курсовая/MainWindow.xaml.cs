@@ -94,6 +94,14 @@ namespace Coursework
             productSupplierWindow.ShowDialog();
         }
 
+        private void ShowReportButton_Click(object sender, RoutedEventArgs e)
+        {
+            ReportWindow reportWindow = new ReportWindow();
+            Close();
+            reportWindow.Show();
+        }
+
+
         private void ConnectButton_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -108,21 +116,6 @@ namespace Coursework
                 MessageBox.Show($"Ошибка подключения к базе данных: {ex.Message}");
             }
         }
-
-        private void DisconnectButton_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                // Отключение от базы данных
-                context?.Dispose();
-                MessageBox.Show("Отключение от базы данных выполнено успешно.");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Ошибка отключения от базы данных: {ex.Message}");
-            }
-        }
-
     }
 }
 

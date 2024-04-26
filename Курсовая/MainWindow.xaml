@@ -1,7 +1,7 @@
 ﻿<Window x:Class="Coursework.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Главное окно" Height="450" Width="800">
+        Title="Главная" Height="450" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -22,8 +22,7 @@
             <Button Content="Элементы заказа" Click="OrderItem_Click" FontFamily="Yu Gothic UI Semibold" Height="25" Margin="5"/>
         </StackPanel>
         <StackPanel Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="5">
-            <Button Content="Подключиться к базе данных" Click="ConnectButton_Click" FontFamily="Yu Gothic UI Semibold" FontSize="12" Width="190" Height="25" Margin="5"/>
-            <Button Content="Отключиться от базы данных" Click="DisconnectButton_Click" FontFamily="Yu Gothic UI Semibold" FontSize="12" Width="190" Height="25" Margin="5"/>
+            <Button Content="Отчёты" Click="ShowReportButton_Click" FontFamily="Yu Gothic UI Semibold" FontSize="12" Width="190" Height="25"/>
         </StackPanel>
     </Grid>
 </Window>
