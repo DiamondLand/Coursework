@@ -25,23 +25,11 @@ namespace Курсовая
         private void LoadTable()
         {
             var orderPayments = context.OrderPayments
-                                        .Include("OrderItem")
+                                        .Include("OrderItem.Product")
                                         .Include("PaymentMethod")
                                         .ToList();
 
-            // Загрузите только нужные данные, включая имя продукта
-            var data = orderPayments.Select(op => new
-            {
-                op.OrderPaymentId,
-                op.OrderId,
-                op.OrderItem.Product.Name,
-                op.PaymentMethodId,
-                op.PaymentMethod,
-                op.AmountPaid,
-                op.PaymentDate
-            }).ToList();
-
-            DataGrid.ItemsSource = data;
+            DataGrid.ItemsSource = orderPayments;
         }
 
         private void LoadOrders()
@@ -124,22 +112,6 @@ namespace Курсовая
                 {
                     ClearInputFields();
                     isEditing = false;
-                }
-            }
-        }
-
-        private void DeleteButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (DataGrid.SelectedItem != null && DataGrid.SelectedItem is OrderPayment selectedOrderPayment)
-            {
-                MessageBoxResult result = MessageBox.Show($"Вы уверены, что хотите удалить оплату заказа {selectedOrderPayment.OrderPaymentId}?",
-                                                          "Подтверждение удаления", MessageBoxButton.YesNo, MessageBoxImage.Question);
-
-                if (result == MessageBoxResult.Yes)
-                {
-                    context.OrderPayments.Remove(selectedOrderPayment);
-                    context.SaveChanges();
-                    LoadTable();
                 }
             }
         }

@@ -18,13 +18,7 @@
                 <DataGridTextColumn Header="Заказ" Binding="{Binding OrderItem.Product.Name}"/>
                 <DataGridTextColumn Header="Способ оплаты" Binding="{Binding PaymentMethod.Name}"/>
                 <DataGridTextColumn Header="Количество" Binding="{Binding AmountPaid}"/>
-                <DataGridTemplateColumn Header="">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Content="Удалить" Click="DeleteButton_Click" Margin="5" FontSize="10" FontFamily="Arial" Width="60"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Дата оплаты" Binding="{Binding PaymentDate}"/>
             </DataGrid.Columns>
         </DataGrid>
         <!-- Поля ввода для новых данных -->

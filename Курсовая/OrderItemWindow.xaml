@@ -13,26 +13,19 @@
                   HorizontalAlignment="Stretch" 
                   VerticalAlignment="Stretch" 
                   SelectionMode="Single" 
-                  MouseDoubleClick="DataGrid_MouseDoubleClick" SelectionChanged="DataGrid_SelectionChanged">
+                  MouseDoubleClick="DataGrid_MouseDoubleClick">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID заказа" Binding="{Binding Order.OrderId}"/>
+                <DataGridTextColumn Header="Заказчик" Binding="{Binding Order.User.FirstName}"/>
                 <DataGridTextColumn Header="Товар" Binding="{Binding Product.Name}"/>
                 <DataGridTextColumn Header="Количество" Binding="{Binding Quantity}"/>
-                <DataGridTemplateColumn Header="">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Content="Удалить" Click="DeleteButton_Click" Margin="5" FontSize="10" FontFamily="Arial" Width="60"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
         <!-- Поля ввода для новых данных -->
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Bottom" Orientation="Horizontal" Margin="0,20,0,0">
-            <!-- Выбор id заказа -->
+            <!-- Выбор заказчка -->
             <StackPanel Orientation="Vertical">
-                <TextBlock Text="ID заказа" Foreground="Gray" Margin="5,0,0,0" VerticalAlignment="Center" IsHitTestVisible="False"/>
-                <ComboBox x:Name="OrderComboBox" Width="150" Margin="5"/>
+                <TextBlock Text="Заказчик" Foreground="Gray" Margin="5,0,0,0" VerticalAlignment="Center" IsHitTestVisible="False"/>
+                <ComboBox x:Name="OrderUserComboBox" Width="150" Margin="5"/>
             </StackPanel>
             <!-- Выбор товара -->
             <StackPanel Orientation="Vertical">

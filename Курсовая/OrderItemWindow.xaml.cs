@@ -24,16 +24,22 @@ namespace Курсовая
         }
         private void LoadTable()
         {
-            var orderItems = context.OrderItems.Include("Order").Include("Product").ToList();
+            var orderItems = context.OrderItems
+                                    .Include("Order")
+                                    .Include("Product")
+                                    .Include("Order.User")
+                                    .ToList();
             DataGrid.ItemsSource = orderItems;
         }
 
         private void LoadOrders()
         {
-            var orders = context.Orders.ToList();
-            OrderComboBox.ItemsSource = orders;
-            OrderComboBox.DisplayMemberPath = "OrderId";
-            OrderComboBox.SelectedValuePath = "OrderId";
+            var ordersWithUsers = context.Orders
+                .Include("User")
+                .ToList();
+            OrderUserComboBox.ItemsSource = ordersWithUsers;
+            OrderUserComboBox.DisplayMemberPath = "User.FirstName";
+            OrderUserComboBox.SelectedValuePath = "OrderId";
         }
 
         private void LoadProducts()
@@ -46,7 +52,7 @@ namespace Курсовая
 
         private void Add_Click(object sender, RoutedEventArgs e)
         {
-            if (OrderComboBox.SelectedItem == null || ProductComboBox.SelectedItem == null || string.IsNullOrWhiteSpace(QuantityTextBox.Text))
+            if (OrderUserComboBox.SelectedItem == null || ProductComboBox.SelectedItem == null || string.IsNullOrWhiteSpace(QuantityTextBox.Text))
             {
                 MessageBox.Show("Пожалуйста, заполните все поля.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
@@ -63,7 +69,7 @@ namespace Курсовая
                 // Обновляем существующий элемент заказа
                 if (DataGrid.SelectedItem is OrderItem selectedOrderItem)
                 {
-                    selectedOrderItem.OrderId = (int)OrderComboBox.SelectedValue;
+                    selectedOrderItem.OrderId = (int)OrderUserComboBox.SelectedValue;
                     selectedOrderItem.ProductId = (int)ProductComboBox.SelectedValue;
                     selectedOrderItem.Quantity = quantity;
                     context.SaveChanges(); // Сохраняем изменения в базе данных
@@ -77,7 +83,7 @@ namespace Курсовая
                 // Добавляем новый элемент заказа
                 OrderItem newOrderItem = new OrderItem
                 {
-                    OrderId = (int)OrderComboBox.SelectedValue,
+                    OrderId = (int)OrderUserComboBox.SelectedValue,
                     ProductId = (int)ProductComboBox.SelectedValue,
                     Quantity = quantity
                 };
@@ -95,7 +101,7 @@ namespace Курсовая
             {
                 if (!isEditing)
                 {
-                    OrderComboBox.SelectedValue = selectedOrderItem.OrderId;
+                    OrderUserComboBox.SelectedValue = selectedOrderItem.OrderId;
                     ProductComboBox.SelectedValue = selectedOrderItem.ProductId;
                     QuantityTextBox.Text = selectedOrderItem.Quantity.ToString();
 
@@ -109,25 +115,9 @@ namespace Курсовая
             }
         }
 
-        private void DeleteButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (DataGrid.SelectedItem != null && DataGrid.SelectedItem is OrderItem selectedOrderItem)
-            {
-                MessageBoxResult result = MessageBox.Show($"Вы уверены, что хотите удалить элемент заказа {selectedOrderItem.OrderItemId}?",
-                                                          "Подтверждение удаления", MessageBoxButton.YesNo, MessageBoxImage.Question);
-
-                if (result == MessageBoxResult.Yes)
-                {
-                    context.OrderItems.Remove(selectedOrderItem);
-                    context.SaveChanges();
-                    LoadTable();
-                }
-            }
-        }
-
         private void ClearInputFields()
         {
-            OrderComboBox.SelectedItem = null;
+            OrderUserComboBox.SelectedItem = null;
             ProductComboBox.SelectedItem = null;
             QuantityTextBox.Text = "";
         }
@@ -142,11 +132,6 @@ namespace Курсовая
         private void Window_Closed(object sender, EventArgs e)
         {
             context.Dispose();
-        }
-
-        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
         }
     }
 }
