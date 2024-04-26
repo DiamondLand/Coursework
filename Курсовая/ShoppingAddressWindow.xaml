@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="ShoppingAddressWindow" Height="450" Width="800">
+        Title="Адреса " Height="450" Width="800">
     <Grid>
         <!-- DataGrid для отображения таблицы -->
         <DataGrid x:Name="DataGrid"
@@ -15,8 +15,8 @@
                   SelectionMode="Single" 
                   MouseDoubleClick="DataGrid_MouseDoubleClick">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Адрес 1" Binding="{Binding AddressLine1}"/>
-                <DataGridTextColumn Header="Адрес 2" Binding="{Binding AddressLine2}"/>
+                <DataGridTextColumn Header="Адрес отправителя" Binding="{Binding AddressLine1}"/>
+                <DataGridTextColumn Header="Адрес получателя" Binding="{Binding AddressLine2}"/>
                 <DataGridTextColumn Header="Страна" Binding="{Binding Country}"/>
                 <DataGridTextColumn Header="Город" Binding="{Binding City}"/>
                 <DataGridTextColumn Header="Заказчик" Binding="{Binding User.FirstName}"/>
@@ -34,10 +34,10 @@
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Bottom" Orientation="Horizontal" Margin="0,20,0,0">
             <!-- Заполнение адреса 1 и адреса 2 -->
             <StackPanel Orientation="Vertical">
-                <TextBlock Text="Адрес 1" Foreground="Gray" IsHitTestVisible="False"/>
+                <TextBlock Text="Адрес отправителя" Foreground="Gray" IsHitTestVisible="False"/>
                 <TextBox x:Name="AddressLine1TextBox" Width="100" Margin="5" BorderBrush="#FF676767"/>
 
-                <TextBlock Text="Адрес 2" Foreground="Gray" Margin="5,0,0,0" VerticalAlignment="Center" IsHitTestVisible="False"/>
+                <TextBlock Text="Адрес получателя" Foreground="Gray" Margin="5,0,0,0" VerticalAlignment="Center" IsHitTestVisible="False"/>
                 <TextBox x:Name="AddressLine2TextBox" Width="100" Margin="5" BorderBrush="#FF676767"/>
             </StackPanel>
             <!-- Заполнение страны и города -->
@@ -48,15 +48,14 @@
                 <TextBlock Text="Город" Foreground="Gray" Margin="5,0,0,0" VerticalAlignment="Center" IsHitTestVisible="False"/>
                 <TextBox x:Name="CityTextBox" Width="100" Margin="5" BorderBrush="#FF676767"/>
             </StackPanel>
-            <!-- Заполнение заказчика -->
             <StackPanel Orientation="Vertical">
+                <!-- Заполнение почтового индекса -->
+                <TextBlock Text="Почтовый индекс" Foreground="Gray" Margin="5,0,0,0" IsHitTestVisible="False" Width="99"/>
+                <TextBox x:Name="PostalCodeTextBox" Width="100" Margin="5" BorderBrush="#FF676767"/>
+
+                <!-- Заполнение заказчика -->
                 <TextBlock Text="Заказчик" Foreground="Gray" Margin="5,0,0,0" VerticalAlignment="Center" IsHitTestVisible="False"/>
                 <ComboBox x:Name="UserComboBox" Width="150" Margin="5"/>
-            </StackPanel>
-            <!-- Заполнение почтового индекса -->
-            <StackPanel Orientation="Vertical">
-                <TextBlock Text="Почтовый индекс" Foreground="Gray" Margin="5,0,0,0" VerticalAlignment="Center" IsHitTestVisible="False"/>
-                <TextBox x:Name="PostalCodeTextBox" Width="100" Margin="5" BorderBrush="#FF676767"/>
             </StackPanel>
             <Button Content="Добавить / Обновить" Click="Add_Click" Margin="5" FontSize="12" FontFamily="Arial" Width="140"/>
             <Button Content="Вернуться в меню" Click="ReturnToMainMenu_Click" Margin="5" FontSize="12" FontFamily="Arial" Width="120"/>
