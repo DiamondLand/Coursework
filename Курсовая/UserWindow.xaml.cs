@@ -23,54 +23,54 @@ namespace Coursework
             DataGrid.ItemsSource = users;
         }
 
-        private void Add_Click(object sender, RoutedEventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(FirstNameTextBox.Text) || string.IsNullOrWhiteSpace(LastNameTextBox.Text) ||
-                string.IsNullOrWhiteSpace(EmailTextBox.Text) || string.IsNullOrWhiteSpace(PhoneTextBox.Text))
+            private void Add_Click(object sender, RoutedEventArgs e)
             {
-                MessageBox.Show("Пожалуйста, заполните все поля.", "О-о-у", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
+                if (string.IsNullOrWhiteSpace(FirstNameTextBox.Text) || string.IsNullOrWhiteSpace(LastNameTextBox.Text) ||
+                    string.IsNullOrWhiteSpace(EmailTextBox.Text) || string.IsNullOrWhiteSpace(PhoneTextBox.Text))
+                {
+                    MessageBox.Show("Пожалуйста, заполните все поля.", "О-о-у", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
 
-            if (!Regex.IsMatch(EmailTextBox.Text, @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"))
-            {
-                MessageBox.Show("Некорректный формат email.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
+                if (!Regex.IsMatch(EmailTextBox.Text, @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"))
+                {
+                    MessageBox.Show("Некорректный формат email.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
 
-            if (!PhoneTextBox.Text.StartsWith("+7") || PhoneTextBox.Text.Length != 12)
-            {
-                MessageBox.Show("Номер телефона должен начинаться с '+7' и состоять из 12 символов.", "О-о-у", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
+                if (!PhoneTextBox.Text.StartsWith("+7") || PhoneTextBox.Text.Length != 12)
+                {
+                    MessageBox.Show("Номер телефона должен начинаться с '+7' и состоять из 12 символов.", "О-о-у", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
 
-            // Создаем нового пользователя из введённых данных
-            User newUser = new User
-            {
-                FirstName = FirstNameTextBox.Text,
-                LastName = LastNameTextBox.Text,
-                Email = EmailTextBox.Text,
-                Phone = PhoneTextBox.Text,
-            };
+                // Создаем нового пользователя из введённых данных
+                User newUser = new User
+                {
+                    FirstName = FirstNameTextBox.Text,
+                    LastName = LastNameTextBox.Text,
+                    Email = EmailTextBox.Text,
+                    Phone = PhoneTextBox.Text,
+                };
 
-            // Если выбран пользователь из DataGrid, обновляем его данные
-            if (DataGrid.SelectedItem != null & isEditing)
-            {
-                User selectedUser = (User)DataGrid.SelectedItem;
-                selectedUser.FirstName = newUser.FirstName;
-                selectedUser.LastName = newUser.LastName;
-                selectedUser.Email = newUser.Email;
-                selectedUser.Phone = newUser.Phone;
-            }
-            else // Если создаётся новый пользователь
-            {
-                context.Users.Add(newUser);
-            }
+                // Если выбран пользователь из DataGrid, обновляем его данные
+                if (DataGrid.SelectedItem != null & isEditing)
+                {
+                    User selectedUser = (User)DataGrid.SelectedItem;
+                    selectedUser.FirstName = newUser.FirstName;
+                    selectedUser.LastName = newUser.LastName;
+                    selectedUser.Email = newUser.Email;
+                    selectedUser.Phone = newUser.Phone;
+                }
+                else // Если создаётся новый пользователь
+                {
+                    context.Users.Add(newUser);
+                }
 
-            context.SaveChanges(); // Сохраняем изменения в базе данных
-            LoadTable();
-            ClearInputFields();
-        }
+                context.SaveChanges(); // Сохраняем изменения в базе данных
+                LoadTable();
+                ClearInputFields();
+            }
 
         private void DataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
@@ -139,6 +139,5 @@ namespace Coursework
         {
             context.Dispose();
         }
-
     }
 }

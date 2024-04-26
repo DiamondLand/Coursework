@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 using System.Windows;
-using System.Windows.Input;
 
 namespace Курсовая
 {
@@ -72,17 +71,7 @@ namespace Курсовая
             context.ProductCategories.Add(newProductCategory);
             context.SaveChanges(); // Сохраняем изменения в базе данных
             LoadProductCategories(); // Загружаем обновленные данные
-        }
-
-
-        private void ProductCategoryDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            // Проверяем, что выбранная строка не пуста и является объектом типа ProductCategory
-            if (ProductCategoryDataGrid.SelectedItem != null && ProductCategoryDataGrid.SelectedItem is ProductCategory selectedProductCategory)
-            {
-                // Пока не будем реализовывать редактирование связей, так как обычно их изменение не требуется в приложениях
-                MessageBox.Show("Редактирование связей не реализовано в данной версии приложения.", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
+            ClearInputFields();
         }
 
         private void DeleteProductCategoryButton_Click(object sender, RoutedEventArgs e)
@@ -95,6 +84,12 @@ namespace Курсовая
             }
         }
 
+        private void ClearInputFields()
+        {
+            ProductComboBox.SelectedItem = null;
+            CategoryComboBox.SelectedItem = null;
+        }
+
         private void ReturnToMainMenu_Click(object sender, RoutedEventArgs e)
         {
             MainWindow mainWindow = new MainWindow();
@@ -105,11 +100,6 @@ namespace Курсовая
         private void Window_Closed(object sender, EventArgs e)
         {
             context.Dispose();
-        }
-
-        private void ProductCategoryDataGrid_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
-        {
-
         }
     }
 }
