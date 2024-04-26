@@ -7,6 +7,7 @@
             <Button Content="Пользователи" Click="ShowUsers_Click" FontFamily="Yu Gothic UI Semibold" Height="25"/>
             <Button Content="Поставщики" Click="Supplier_Click" FontFamily="Yu Gothic UI Semibold" Height="25"/>
             <Button Content="Продукты" Click="ShowProducts_Click" FontFamily="Yu Gothic UI Semibold" Height="25"/>
+            <Button Content="Продокты поставщиков" Click="ProductSupplier_Click" FontFamily="Yu Gothic UI Semibold" Height="25"/>
             <Button Content="Категории" Click="ShowCategories_Click" FontFamily="Yu Gothic UI Semibold" Height="25"/>
             <Button Content="Категории продуктов" Click="ShowProductCategories_Click" FontFamily="Yu Gothic UI Semibold" Height="25"/>
             <Button Content="Адреса доставки" Click="ShowShoppingAddress_Click" FontFamily="Yu Gothic UI Semibold" Height="25"/>

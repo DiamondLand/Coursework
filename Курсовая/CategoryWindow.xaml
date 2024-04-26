@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Категории продуктов" Height="450" Width="800">
+        Title="Категории" Height="450" Width="800">
     <Grid>
         <!-- DataGrid для отображения таблицы -->
         <DataGrid x:Name="CategoryDataGrid"

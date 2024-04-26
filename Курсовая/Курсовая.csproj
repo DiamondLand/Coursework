@@ -187,6 +187,9 @@
     <Compile Include="ProductCategoryWindow.xaml.cs">
       <DependentUpon>ProductCategoryWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ProductSupplierWindow.xaml.cs">
+      <DependentUpon>ProductSupplierWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ProductWindow.xaml.cs">
       <DependentUpon>ProductWindow.xaml</DependentUpon>
     </Compile>
@@ -232,6 +235,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ProductCategoryWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProductSupplierWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

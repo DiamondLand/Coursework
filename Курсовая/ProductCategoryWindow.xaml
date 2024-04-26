@@ -44,7 +44,7 @@
             <TextBlock Text="Категория" Foreground="Gray" Margin="5,0,0,0" VerticalAlignment="Center" IsHitTestVisible="False"/>
             <ComboBox x:Name="CategoryComboBox" Width="150" Margin="5"/>
             
-            <Button Content="Добавить / Обновить" Click="AddProductCategory_Click" Margin="5" FontSize="12" FontFamily="Arial" Width="140"/>
+            <Button Content="Добавить" Click="AddProductCategory_Click" Margin="5" FontSize="12" FontFamily="Arial" Width="75"/>
             <Button Content="Вернуться в меню" Click="ReturnToMainMenu_Click" Margin="5" FontSize="12" FontFamily="Arial" Width="120"/>
         </StackPanel>
     </Grid>

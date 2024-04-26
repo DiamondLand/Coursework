@@ -87,6 +87,13 @@ namespace Coursework
             supplierWindow.ShowDialog();
         }
 
+        private void ProductSupplier_Click(object sender, RoutedEventArgs e)
+        {
+            ProductSupplierWindow productSupplierWindow = new ProductSupplierWindow();
+            Close();
+            productSupplierWindow.ShowDialog();
+        }
+
         private void ConnectButton_Click(object sender, RoutedEventArgs e)
         {
             try
