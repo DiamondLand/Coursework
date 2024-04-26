@@ -72,11 +72,19 @@ namespace Coursework
             Close();
             orderItemWindow.ShowDialog();
         }
+
         private void OrderPayment_Click(object sender, RoutedEventArgs e)
         {
             OrderPaymentWindow orderPaymentWindow = new OrderPaymentWindow();
             Close();
             orderPaymentWindow.ShowDialog();
+        }
+
+        private void Supplier_Click(object sender, RoutedEventArgs e)
+        {
+            SupplierWindow supplierWindow = new SupplierWindow();
+            Close();
+            supplierWindow.ShowDialog();
         }
 
         private void ConnectButton_Click(object sender, RoutedEventArgs e)
