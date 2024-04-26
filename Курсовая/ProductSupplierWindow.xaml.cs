@@ -86,7 +86,6 @@ namespace Курсовая
                 ClearInputFields();
                 isEditing = false;
             }
-
             else
             {
                 // Добавляем новую связь продукта и поставщика
@@ -100,6 +99,7 @@ namespace Курсовая
                 context.SaveChanges(); // Сохраняем изменения в базе данных
                 LoadTable();
                 ClearInputFields();
+                isEditing = false;
             }
         }
 

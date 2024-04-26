@@ -70,6 +70,8 @@ namespace Coursework
                 context.SaveChanges(); // Сохраняем изменения в базе данных
                 LoadTable();
                 ClearInputFields();
+
+                isEditing = false;
             }
 
         private void DataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)

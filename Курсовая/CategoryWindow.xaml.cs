@@ -51,6 +51,7 @@ namespace Курсовая
             context.SaveChanges(); // Сохраняем изменения в базе данных
             LoadCategoryTable();
             ClearCategoryInputFields();
+            isEditing = false;
         }
 
         private void CategoryDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
